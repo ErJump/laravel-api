@@ -18,7 +18,7 @@ class PostController extends Controller
         $title = $request->query('title');
 
         if ($title) {
-            $posts = Post::where('title', 'like', '%' . $title . '%')->paginate(10);
+            $posts = Post::where('title', 'like', '%' . $title . '%')->with('user')->paginate(10);
         } else {
             $posts = Post::with('user')->paginate(10);
         }

@@ -1923,7 +1923,8 @@ __webpack_require__.r(__webpack_exports__);
       posts: [],
       currentPage: 1,
       nextPage: null,
-      prevPage: null
+      prevPage: null,
+      titleParameter: ''
     };
   },
   methods: {
@@ -1961,6 +1962,19 @@ __webpack_require__.r(__webpack_exports__);
         _this3.nextPage = response.data.results.next_page_url;
         _this3.prevPage = response.data.results.prev_page_url;
         console.log(_this3.posts);
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    getFilteredPosts: function getFilteredPosts() {
+      var _this4 = this;
+
+      console.log('/api/posts?title=' + this.titleParameter);
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/posts?title=' + this.titleParameter).then(function (response) {
+        _this4.posts = response.data.results.data;
+        _this4.prevPage = response.data.results.prev_page_url;
+        _this4.nextPage = response.data.results.next_page_url;
+        console.log(_this4.posts);
       })["catch"](function (error) {
         console.log(error);
       });
@@ -2032,8 +2046,40 @@ var render = function render() {
     staticClass: "py-5"
   }, [_c("div", {
     staticClass: "container-lg"
-  }, [_c("div", {
-    staticClass: "row mb-4 justify-content-center"
+  }, [_c("label", {
+    staticClass: "d-block",
+    attrs: {
+      "for": "titleSearch"
+    }
+  }, [_vm._v("Title filter")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.titleParameter,
+      expression: "titleParameter"
+    }],
+    attrs: {
+      name: "titleSearch",
+      type: "text"
+    },
+    domProps: {
+      value: _vm.titleParameter
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.titleParameter = $event.target.value;
+      }
+    }
+  }), _vm._v(" "), _c("div", {
+    staticClass: "btn btn-primary d-inline",
+    on: {
+      click: function click($event) {
+        return _vm.getFilteredPosts();
+      }
+    }
+  }, [_vm._v("Search")]), _vm._v(" "), _c("div", {
+    staticClass: "row my-4 justify-content-center"
   }, _vm._l(_vm.posts, function (post) {
     return _c("PostCard", {
       key: post.id,
@@ -14530,14 +14576,15 @@ module.exports = g;
 /*!******************************************!*\
   !*** ./resources/js/components/Main.vue ***!
   \******************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Main_vue_vue_type_template_id_b9c20fb8___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Main.vue?vue&type=template&id=b9c20fb8& */ "./resources/js/components/Main.vue?vue&type=template&id=b9c20fb8&");
 /* harmony import */ var _Main_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Main.vue?vue&type=script&lang=js& */ "./resources/js/components/Main.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _Main_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _Main_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -14567,7 +14614,7 @@ component.options.__file = "resources/js/components/Main.vue"
 /*!*******************************************************************!*\
   !*** ./resources/js/components/Main.vue?vue&type=script&lang=js& ***!
   \*******************************************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

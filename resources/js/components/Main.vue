@@ -1,7 +1,10 @@
 <template>
     <main class="py-5">
         <div class="container-lg">
-            <div class="row mb-4 justify-content-center">
+            <label class="d-block" for="titleSearch">Title filter</label>
+            <input name="titleSearch" type="text" v-model="titleParameter">
+            <div @click="getFilteredPosts()" class="btn btn-primary d-inline">Search</div>
+            <div class="row my-4 justify-content-center">
                 <PostCard v-for="post in posts" :key="post.id" :post="post" />
             </div>
             <div class="d-flex align-items-center justify-content-around w-100">
@@ -26,6 +29,7 @@
             currentPage: 1,
             nextPage: null,
             prevPage: null,
+            titleParameter: '',
         };
     },
     methods: {
@@ -67,6 +71,19 @@
                 console.log(error);
             });
         },
+        getFilteredPosts(){
+            console.log('/api/posts?title=' + this.titleParameter);
+            axios.get('/api/posts?title=' + this.titleParameter)
+                .then(response => {
+                this.posts = response.data.results.data;
+                this.prevPage = response.data.results.prev_page_url;
+                this.nextPage = response.data.results.next_page_url;
+                console.log(this.posts);
+            })
+                .catch(error => {
+                console.log(error);
+            });
+        }
     },
     created() {
         this.getPosts();

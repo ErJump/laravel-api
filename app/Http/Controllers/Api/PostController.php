@@ -13,9 +13,16 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $posts = Post::with('user')->paginate(10);
+        $title = $request->query('title');
+
+        if ($title) {
+            $posts = Post::where('title', 'like', '%' . $title . '%')->paginate(10);
+        } else {
+            $posts = Post::with('user')->paginate(10);
+        }
+
         return response()->json([
             'response' => true,
             'results' => $posts
@@ -32,6 +39,7 @@ class PostController extends Controller
         //
     }
 
+    
     /**
      * Store a newly created resource in storage.
      *

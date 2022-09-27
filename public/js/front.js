@@ -2043,14 +2043,14 @@ var render = function render() {
     });
   }), 1), _vm._v(" "), _c("div", {
     staticClass: "d-flex align-items-center justify-content-around w-100"
-  }, [_c("div", {
+  }, [_vm.currentPage != 1 ? _c("div", {
     staticClass: "btn btn-primary",
     on: {
       click: function click($event) {
         return _vm.getPrevPage();
       }
     }
-  }, [_vm._v("Prev Page")]), _vm._v(" "), _c("h5", [_vm._v(_vm._s(_vm.currentPage))]), _vm._v(" "), _c("div", {
+  }, [_vm._v("Prev Page")]) : _vm._e(), _vm._v(" "), _c("h5", [_vm._v(_vm._s(_vm.currentPage))]), _vm._v(" "), _c("div", {
     staticClass: "btn btn-primary",
     on: {
       click: function click($event) {

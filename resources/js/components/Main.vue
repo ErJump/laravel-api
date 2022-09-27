@@ -5,7 +5,7 @@
                 <PostCard v-for="post in posts" :key="post.id" :post="post" />
             </div>
             <div class="d-flex align-items-center justify-content-around w-100">
-                <div class="btn btn-primary" @click="getPrevPage()">Prev Page</div>
+                <div v-if="currentPage != 1" class="btn btn-primary" @click="getPrevPage()">Prev Page</div>
                 <h5>{{currentPage}}</h5>
                 <div class="btn btn-primary" @click="getNextPage()">Next Page</div>
             </div>  

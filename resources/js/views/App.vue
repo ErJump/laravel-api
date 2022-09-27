@@ -1,12 +1,14 @@
 <template>
     <section>
-        <h1>Hello</h1>
+        <Main/>
     </section>
 </template>
 
 <script>
-export default {
+import Main from "../components/Main.vue";
 
+export default {
+    components: { Main }
 }
 </script>
 

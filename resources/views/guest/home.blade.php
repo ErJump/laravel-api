@@ -9,8 +9,7 @@
 
     <title>Boolpress</title>
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -21,7 +20,8 @@
 </head>
 <body>
     <div id="root">
-        <h1>Yo funge</h1>
+        
     </div>
+<script src="{{ asset('js/front.js') }}"></script>
 </body>
 </html>

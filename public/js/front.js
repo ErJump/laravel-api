@@ -1921,7 +1921,9 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       posts: [],
-      activePage: 1
+      currentPage: 1,
+      nextPage: null,
+      prevPage: null
     };
   },
   methods: {
@@ -1930,7 +1932,35 @@ __webpack_require__.r(__webpack_exports__);
 
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/posts").then(function (response) {
         _this.posts = response.data.results.data;
+        _this.prevPage = response.data.results.prev_page_url;
+        _this.nextPage = response.data.results.next_page_url;
         console.log(_this.posts);
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    getNextPage: function getNextPage() {
+      var _this2 = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(this.nextPage).then(function (response) {
+        _this2.posts = response.data.results.data;
+        _this2.currentPage++;
+        _this2.nextPage = response.data.results.next_page_url;
+        _this2.prevPage = response.data.results.prev_page_url;
+        console.log(_this2.posts);
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    getPrevPage: function getPrevPage() {
+      var _this3 = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(this.prevPage).then(function (response) {
+        _this3.posts = response.data.results.data;
+        _this3.currentPage--;
+        _this3.nextPage = response.data.results.next_page_url;
+        _this3.prevPage = response.data.results.prev_page_url;
+        console.log(_this3.posts);
       })["catch"](function (error) {
         console.log(error);
       });
@@ -2003,7 +2033,7 @@ var render = function render() {
   }, [_c("div", {
     staticClass: "container-lg"
   }, [_c("div", {
-    staticClass: "row"
+    staticClass: "row mb-4 justify-content-center"
   }, _vm._l(_vm.posts, function (post) {
     return _c("PostCard", {
       key: post.id,
@@ -2011,7 +2041,23 @@ var render = function render() {
         post: post
       }
     });
-  }), 1)])]);
+  }), 1), _vm._v(" "), _c("div", {
+    staticClass: "d-flex align-items-center justify-content-around w-100"
+  }, [_c("div", {
+    staticClass: "btn btn-primary",
+    on: {
+      click: function click($event) {
+        return _vm.getPrevPage();
+      }
+    }
+  }, [_vm._v("Prev Page")]), _vm._v(" "), _c("h5", [_vm._v(_vm._s(_vm.currentPage))]), _vm._v(" "), _c("div", {
+    staticClass: "btn btn-primary",
+    on: {
+      click: function click($event) {
+        return _vm.getNextPage();
+      }
+    }
+  }, [_vm._v("Next Page")])])])]);
 };
 
 var staticRenderFns = [];

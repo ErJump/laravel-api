@@ -1969,7 +1969,6 @@ __webpack_require__.r(__webpack_exports__);
     getFilteredPosts: function getFilteredPosts() {
       var _this4 = this;
 
-      console.log('/api/posts?title=' + this.titleParameter);
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/posts?title=' + this.titleParameter).then(function (response) {
         _this4.posts = response.data.results.data;
         _this4.prevPage = response.data.results.prev_page_url;

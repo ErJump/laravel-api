@@ -72,7 +72,6 @@
             });
         },
         getFilteredPosts(){
-            console.log('/api/posts?title=' + this.titleParameter);
             axios.get('/api/posts?title=' + this.titleParameter)
                 .then(response => {
                 this.posts = response.data.results.data;

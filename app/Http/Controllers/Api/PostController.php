@@ -15,14 +15,9 @@ class PostController extends Controller
      */
     public function index(Request $request)
     {
-        $title = $request->query('title');
-
-        if ($title) {
-            $posts = Post::where('title', 'like', '%' . $title . '%')->with('user')->paginate(10);
-        } else {
-            $posts = Post::with('user')->paginate(10);
-        }
-
+        $title = $request->query('title', '');
+        $posts = Post::where('title', 'like', '%' . $title . '%')->with('user')->paginate(10);
+        
         return response()->json([
             'response' => true,
             'results' => $posts

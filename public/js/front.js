@@ -1923,7 +1923,8 @@ __webpack_require__.r(__webpack_exports__);
       posts: [],
       currentPage: 1,
       titleParameter: '',
-      apiUrl: '/api/posts'
+      apiUrl: '/api/posts',
+      postInPage: 10
     };
   },
   methods: {
@@ -1939,7 +1940,8 @@ __webpack_require__.r(__webpack_exports__);
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(this.apiUrl, {
         params: {
           title: this.titleParameter,
-          page: this.currentPage
+          page: this.currentPage,
+          postInPage: this.postInPage
         }
       }).then(function (response) {
         _this.posts = response.data.results.data;
@@ -2014,6 +2016,8 @@ var render = function render() {
     staticClass: "py-5"
   }, [_c("div", {
     staticClass: "container-lg"
+  }, [_c("div", {
+    staticClass: "d-inline-block"
   }, [_c("label", {
     staticClass: "d-block",
     attrs: {
@@ -2039,7 +2043,34 @@ var render = function render() {
         _vm.titleParameter = $event.target.value;
       }
     }
-  }), _vm._v(" "), _c("div", {
+  })]), _vm._v(" "), _c("div", {
+    staticClass: "d-inline-block"
+  }, [_c("label", {
+    staticClass: "d-block",
+    attrs: {
+      "for": "postInPage"
+    }
+  }, [_vm._v("N. Posts")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.postInPage,
+      expression: "postInPage"
+    }],
+    attrs: {
+      name: "postInPage",
+      type: "number"
+    },
+    domProps: {
+      value: _vm.postInPage
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.postInPage = $event.target.value;
+      }
+    }
+  })]), _vm._v(" "), _c("div", {
     staticClass: "btn btn-primary d-inline",
     on: {
       click: function click($event) {

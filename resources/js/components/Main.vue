@@ -1,8 +1,14 @@
 <template>
     <main class="py-5">
         <div class="container-lg">
-            <label class="d-block" for="titleSearch">Title filter</label>
-            <input name="titleSearch" type="text" v-model="titleParameter">
+            <div class="d-inline-block">
+                <label class="d-block" for="titleSearch">Title filter</label>
+                <input name="titleSearch" type="text" v-model="titleParameter">
+            </div>
+            <div class="d-inline-block">
+                <label class="d-block" for="postInPage">N. Posts</label>
+                <input name="postInPage" type="number" v-model="postInPage">
+            </div>
             <div @click="getPosts()" class="btn btn-primary d-inline">Search</div>
             <div class="row my-4 justify-content-center">
                 <PostCard v-for="post in posts" :key="post.id" :post="post" />
@@ -28,7 +34,8 @@
             posts: [],
             currentPage: 1,
             titleParameter: '',
-            apiUrl: '/api/posts'
+            apiUrl: '/api/posts',
+            postInPage: 10,
         };
     },
     methods: {
@@ -42,7 +49,8 @@
             axios.get(this.apiUrl, {
                 params: {
                     title: this.titleParameter,
-                    page: this.currentPage
+                    page: this.currentPage,
+                    postInPage: this.postInPage,
                 }
             })
                 .then(response => {

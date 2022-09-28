@@ -16,10 +16,12 @@ class PostController extends Controller
     public function index(Request $request)
     {
         $title = $request->query('title');
+        $postInPage = $request->query('postInPage', 10);
+
         
         $posts = Post::when($title, function($query, $title) {
             return $query->where('title', 'like', '%' . $title . '%');
-        })->with('user')->paginate(10);
+        })->with('user')->paginate($postInPage);
 
         
         return response()->json([

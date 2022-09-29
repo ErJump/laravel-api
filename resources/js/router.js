@@ -3,8 +3,8 @@ import VueRouter from 'vue-router';
 
 Vue.use(VueRouter);
 
-import About from './pages/About.vue';
-import Home from './pages/Home.vue';
+import AboutPage from './pages/AboutPage.vue';
+import HomePage from './pages/HomePage.vue';
 import SinglePost from './pages/SinglePost.vue';
 
 const router = new VueRouter({
@@ -13,12 +13,12 @@ const router = new VueRouter({
         {
             path: '/',
             name: 'home',
-            component: Home
+            component: HomePage
         },
         {
             path: '/about',
             name: 'about',
-            component: About
+            component: AboutPage
         },
         {
             path: '/posts/:id',

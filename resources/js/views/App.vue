@@ -1,15 +1,15 @@
 <template>
     <section>
-        <Header/>
+        <HeaderComponent/>
         <router-view></router-view>
     </section>
 </template>
 
 <script>
-import Header from "../components/Header.vue";
+import HeaderComponent from "../components/HeaderComponent.vue";
 
 export default {
-    components: { Header }
+    components: { HeaderComponent }
 }
 </script>
 

@@ -27,7 +27,7 @@
     import PostCard from './PostCard.vue'
 
     export default {
-    name: "Main",
+    name: "MainComponent",
     components: { PostCard },
     data: function () {
         return {

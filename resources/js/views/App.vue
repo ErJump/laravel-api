@@ -1,14 +1,15 @@
 <template>
     <section>
+        <Header/>
         <router-view></router-view>
     </section>
 </template>
 
 <script>
-import Main from "../components/Main.vue";
+import Header from "../components/Header.vue";
 
 export default {
-    components: { Main }
+    components: { Header }
 }
 </script>
 
